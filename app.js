@@ -5,13 +5,13 @@ const cors = require("cors");
 // const swaggerDocument = require("./swagger.json");
 require("dotenv").config();
 
-// const {
-// 	usersRoute,
-// 	petsRoute,
-// 	sponsorsRoute,
-// 	articlesRoute,
-// 	noticesRoute,
-// } = require("./routes");
+const {
+	// usersRoute,
+	// petsRoute,
+	// sponsorsRoute,
+	// articlesRoute,
+	noticesRoute,
+} = require("./routes");
 const { errorMessage } = require("./constants");
 
 const app = express();
@@ -26,7 +26,7 @@ app.use(express.json());
 
 // app.use("/users", usersRoute);
 
-// app.use("/notices", noticesRoute);
+app.use("/notices", noticesRoute);
 
 // app.use("/pets", petsRoute);
 
