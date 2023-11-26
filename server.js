@@ -1,5 +1,6 @@
 const app = require("./app");
 const { serverMessage } = require("./constants");
+require("dotenv").config();
 
 const mongoose = require("mongoose");
 
