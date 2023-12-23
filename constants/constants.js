@@ -1,6 +1,6 @@
 const emailFrom = "roman.shkliar.dev@gmail.com";
 
-// const userFieldType = { pets: "pets", user: "user" };
+const userFieldType = { pets: "pets", user: "user" };
 
 const file = {
   avatar: {
@@ -36,32 +36,40 @@ const errorMessage = {
 	409: "Email in use",
 };
 
-// const fileFormats = ["jpg", "png"];
+const fileFormats = ["jpg", "png"];
 
 const serverMessage = {
 	expressConnection: `Server running. Use our API on port: ${process.env.PORT}`,
 	dbConnection: "Database connection successful",
 };
 
-// const defaultAvatarUrl =
-//   "https://res.cloudinary.com/de2bdafop/image/upload/v1690014491/default-avatar_zfllbo.png";
+const defaultAvatarUrl =
+  "https://res.cloudinary.com/de2bdafop/image/upload/v1690014491/default-avatar_zfllbo.png";
 
-// const schemaMessage = {
-//   auth: "Bad request! Missing required name field or wrong field name.",
-//   pet: "Bad request! Missing required name field or wrong field name.",
-// };
-// const emailRegex = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/;
+const schemaMessage = {
+  auth: "Bad request! Missing required name field or wrong field name.",
+  pet: "Bad request! Missing required name field or wrong field name.",
+};
+const emailRegex = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/;
 
-// const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]/;
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]/;
 
-// const phoneRegex =
-//   /(\+\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9})/;
+const phoneRegex =
+  /(\+\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9})/;
 
-// const cityRegex = /^[A-Z][a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/;
+const cityRegex = /^[A-Z][a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/;
 
 module.exports = {
 	emailFrom,
 	errorMessage,
 	serverMessage,
 	file,
+	schemaMessage,
+	emailRegex,
+	passwordRegex,
+	phoneRegex,
+	cityRegex,
+	defaultAvatarUrl,
+	fileFormats,
+	userFieldType
 };

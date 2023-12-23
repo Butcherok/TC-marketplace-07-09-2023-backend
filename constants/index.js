@@ -1,12 +1,30 @@
 const {
     errorMessage,
     serverMessage,
-    file
+    file,
+    fileFormats,
+    emailRegex,
+    phoneRegex,
+    passwordRegex,
+    schemaMessage,
+    cityRegex,
+    defaultAvatarUrl,
+    userFieldType,
+    emailFrom
   } = require("./constants");
   
   module.exports = {
     errorMessage,
     serverMessage,
-    file
+    file,
+    fileFormats,
+    emailRegex,
+    phoneRegex,
+    passwordRegex,
+    schemaMessage,
+    cityRegex,
+    defaultAvatarUrl,
+    userFieldType,
+    emailFrom
   };
   

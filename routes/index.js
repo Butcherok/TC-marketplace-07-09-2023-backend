@@ -1,4 +1,4 @@
-// const usersRoute = require("./users/usersRoute");
+const usersRoute = require("./users/usersRoute");
 
 const noticesRoute = require("./notices/noticeRoute");
 
@@ -9,7 +9,7 @@ const noticesRoute = require("./notices/noticeRoute");
 // const articlesRoute = require("./articles/articlesRoute");
 
 module.exports = {
-	// usersRoute,
+	usersRoute,
 	// petsRoute,
 	// sponsorsRoute,
 	// articlesRoute,

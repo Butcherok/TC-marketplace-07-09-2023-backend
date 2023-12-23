@@ -1,6 +1,6 @@
 const express = require("express");
-const passport = require("passport");
-require("../../middlewares/passport")(passport);
+// const passport = require("passport");
+// require("../../middlewares/passport")(passport);
 
 const {
   authentificate,
@@ -17,7 +17,7 @@ const {
 const { Image } = require("../../services");
 
 const {
-  googleAuth,
+//   googleAuth,
   register,
   login,
   logout,
@@ -49,15 +49,15 @@ router.put(
   update
 );
 
-router.get(
-  "/google",
-  passport.authenticate("google", { scope: ["email", "profile"] })
-);
+// router.get(
+//   "/google",
+//   passport.authenticate("google", { scope: ["email", "profile"] })
+// );
 
-router.get(
-  "/google/callback",
-  passport.authenticate("google", { session: false }),
-  googleAuth
-);
+// router.get(
+//   "/google/callback",
+//   passport.authenticate("google", { session: false }),
+//   googleAuth
+// );
 
 module.exports = router;

@@ -4,19 +4,19 @@ const {
 	editUserValidation,
 } = require("./users/usersSchemaValidation");
 
-const {
-	addSchema,
-	updateFavorite,
-} = require("./notices/noticesSchemaValidation");
+// const {
+// 	addSchema,
+// 	updateFavorite,
+// } = require("./notices/noticesSchemaValidation");
 
-const { addPetSchemaValidation } = require("./pets/petsSchemaValidation");
+// const { addPetSchemaValidation } = require("./pets/petsSchemaValidation");
 
 module.exports = {
 	registerSchemaValidation,
 	loginSchemaValidation,
 	editUserValidation,
-	addPetSchemaValidation,
-	addSchema,
-	updateFavorite,
+	// addPetSchemaValidation,
+	// addSchema,
+	// updateFavorite,
 	// addPetSchemaValidation,
 };
