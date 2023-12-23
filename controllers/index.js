@@ -1,12 +1,12 @@
-// const {
-//     googleAuth,
-//     register,
-//     login,
-//     refresh,
-//     logout,
-//     update,
-//     getMe,
-//   } = require("./users/usersController");
+const {
+    googleAuth,
+    register,
+    login,
+    refresh,
+    logout,
+    update,
+    getMe,
+  } = require("./users/usersController");
   
   const {
     // add,
@@ -26,13 +26,13 @@
 //   const { getArticles } = require("./articles/articlesController");
   
   module.exports = {
-    // googleAuth,
-    // register,
-    // login,
-    // refresh,
-    // logout,
-    // update,
-    // getMe,
+    googleAuth,
+    register,
+    login,
+    refresh,
+    logout,
+    update,
+    getMe,
     // addPet,
     // deletePet,
     // getSponsors,

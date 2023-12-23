@@ -1,4 +1,4 @@
-// const { User } = require("./user/userModel");
+const { User } = require("./user/userModel");
 
 const { Notice } = require("./notice/noticeModel");
 
@@ -8,4 +8,4 @@ const { Notice } = require("./notice/noticeModel");
 
 // const { Article } = require("./article/articleModel");
 
-module.exports = { Notice };
+module.exports = { Notice, User };

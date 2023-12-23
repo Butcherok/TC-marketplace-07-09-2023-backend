@@ -1,30 +1,30 @@
-// const emailFrom = "valenkoedu@gmail.com";
+const emailFrom = "roman.shkliar.dev@gmail.com";
 
 // const userFieldType = { pets: "pets", user: "user" };
 
-// const file = {
-//   avatar: {
-//     fieldName: "avatar",
-//     fileName: "avatar",
-//     width: 182,
-//     height: 182,
-//     fileSize: 1024 * 1024,
-//   },
-//   pet: {
-//     fieldName: "file",
-//     fileName: "file",
-//     width: 182,
-//     height: 182,
-//     fileSize: 1024 * 1024,
-//   },
-//   notice: {
-//     fieldName: "file",
-//     fileName: "file",
-//     width: 182,
-//     height: 182,
-//     fileSize: 1024 * 1024,
-//   },
-// };
+const file = {
+  avatar: {
+    fieldName: "avatar",
+    fileName: "avatar",
+    width: 182,
+    height: 182,
+    fileSize: 1024 * 1024,
+  },
+  pet: {
+    fieldName: "file",
+    fileName: "file",
+    width: 182,
+    height: 182,
+    fileSize: 1024 * 1024,
+  },
+  notice: {
+    fieldName: "file",
+    fileName: "file",
+    width: 182,
+    height: 182,
+    fileSize: 1024 * 1024,
+  },
+};
 
 const errorMessage = {
 	400: "Bad request! Something wrong with your request body!",
@@ -60,6 +60,8 @@ const serverMessage = {
 // const cityRegex = /^[A-Z][a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/;
 
 module.exports = {
+	emailFrom,
 	errorMessage,
 	serverMessage,
+	file,
 };
