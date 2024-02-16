@@ -956,12 +956,16 @@
 				}
 			}
 		},
-    "securitySchemes": {
-      "Bearer": {
-        "type": "http",
-        "scheme": "bearer",
-        "bearerFormat": "JWT"
-      }
-    }
+		"securitySchemes": {
+			"basicAuth": {
+				"type": "http",
+				"scheme": "basic admin:123456"
+			},
+			"Bearer": {
+				"type": "http",
+				"scheme": "bearer",
+				"bearerFormat": "JWT"
+			}
+		}
 	}
 }
