@@ -434,13 +434,19 @@
 			},
 			"UserRegistrationRequest": {
 				"type": "object",
-				"required": ["name", "email", "password"],
+				"required": ["firstName", "lastName", "email", "password"],
 				"properties": {
-					"name": {
+					"firstName": {
 						"type": "string",
-						"description": "User name",
+						"description": "User first name",
 						"format": "text",
 						"example": "Mango"
+					},
+					"lastName": {
+						"type": "string",
+						"description": "User last name",
+						"format": "text",
+						"example": "Pongo"
 					},
 					"email": {
 						"type": "string",
@@ -475,16 +481,28 @@
 					},
 					"user": {
 						"type": "object",
-						"required": ["uid", "name", "email", "isNewUser", "avatarUrl"],
+						"required": [
+							"uid",
+							"firstName",
+							"lastName",
+							"email",
+							"isNewUser",
+							"avatarUrl"
+						],
 						"properties": {
 							"uid": {
 								"type": "string",
 								"description": "User id",
 								"example": "64bd39c0b38fc2fe5b5dfef8"
 							},
-							"name": {
+							"firstName": {
 								"type": "string",
-								"description": "User name",
+								"description": "User first name",
+								"format": "text"
+							},
+							"lastName": {
+								"type": "string",
+								"description": "User last name",
 								"format": "text"
 							},
 							"email": {
@@ -544,7 +562,8 @@
 						"type": "object",
 						"required": [
 							"uid",
-							"name",
+							"firstName",
+							"lastName",
 							"email",
 							"isNewUser",
 							"avatarUrl",
@@ -557,9 +576,15 @@
 								"description": "User id",
 								"example": "64bd39c0b38fc2fe5b5dfef8"
 							},
-							"name": {
+							"firstNmae": {
 								"type": "string",
-								"description": "User name",
+								"description": "User first name",
+								"format": "text",
+								"example": "Mango"
+							},
+							"lastName": {
+								"type": "string",
+								"description": "User last name",
 								"format": "text",
 								"example": "Mango"
 							},
@@ -592,7 +617,7 @@
 								"description": "User location",
 								"example": "London"
 							},
-							"pets": {
+							"goods": {
 								"type": "array",
 								"items": {
 									"type": "object",
@@ -612,34 +637,34 @@
 										},
 										"category": {
 											"type": "string",
-											"description": "Pet category",
-											"example": "my-pet"
+											"description": "Goods category",
+											"example": "drones"
 										},
 										"name": {
 											"type": "string",
-											"description": "Pet name",
+											"description": "Goods name",
 											"format": "text",
-											"example": "Peaches"
+											"example": "Drone ME-141"
 										},
 
 										"date": {
 											"type": "date",
-											"description": "Pet birthday date",
+											"description": "Date of manufacture",
 											"example": "2022-12-22T00:00:00.000Z"
 										},
 										"type": {
 											"type": "string",
-											"description": "Pet`s type",
-											"example": "cat"
+											"description": "Goods type",
+											"example": "Brand new"
 										},
 										"fileUrl": {
 											"type": "string",
-											"description": "Pet image url",
+											"description": "Goods image url",
 											"example": "https://res.cloudinary.com/de2bdafop/image/upload/v1690014491/default-avatar_zfllbo.png"
 										},
 										"comments": {
 											"type": "string",
-											"description": "Pet`s description",
+											"description": "Goods description",
 											"example": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, dolore."
 										}
 									}
@@ -692,11 +717,17 @@
 			"UpdateUserFieldsRequest": {
 				"type": "object",
 				"properties": {
-					"name": {
+					"firstName": {
 						"type": "string",
-						"description": "User name",
+						"description": "User first name",
 						"format": "text",
 						"example": "Mango"
+					},
+					"lastName": {
+						"type": "string",
+						"description": "User last name",
+						"format": "text",
+						"example": "Pongo"
 					},
 					"email": {
 						"type": "string",
@@ -723,11 +754,17 @@
 			"UpdateUserAvatarAndFieldsRequest": {
 				"type": "object",
 				"properties": {
-					"name": {
+					"firstName": {
 						"type": "string",
-						"description": "User name",
+						"description": "User first name",
 						"format": "text",
 						"example": "Mango"
+					},
+					"lastName": {
+						"type": "string",
+						"description": "User last name",
+						"format": "text",
+						"example": "Pongo"
 					},
 					"email": {
 						"type": "string",
@@ -779,7 +816,8 @@
 						"type": "object",
 						"required": [
 							"uid",
-							"name",
+							"firstName",
+							"lastName",
 							"email",
 							"isNewUser",
 							"avatarUrl",
@@ -792,11 +830,17 @@
 								"description": "User id",
 								"example": "64bd39c0b38fc2fe5b5dfef8"
 							},
-							"name": {
+							"firstName": {
 								"type": "string",
-								"description": "User name",
+								"description": "User first name",
 								"format": "text",
 								"example": "Mango"
+							},
+							"lastName": {
+								"type": "string",
+								"description": "User last name",
+								"format": "text",
+								"example": "Pongo"
 							},
 							"email": {
 								"type": "string",
@@ -827,11 +871,11 @@
 								"description": "User location",
 								"example": "London"
 							},
-							"pets": {
+							"goods": {
 								"type": "array",
 								"items": {
 									"type": "string",
-									"description": "Pet`s card id",
+									"description": "Goods card id",
 									"example": "64bd39c0b38fc2fe5b5dfef8"
 								}
 							},
