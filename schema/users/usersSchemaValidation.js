@@ -14,12 +14,6 @@ const registerSchemaValidation = Joi.object({
 		"string.min": `First name is not valid`,
 		"string.max": `First name is not valid`,
 	}),
-	lastName: Joi.string().min(2).max(15).required().messages({
-		"string.empty": `Last name cannot be an empty field`,
-		"any.required": `Last name is a required field`,
-		"string.min": `Last name is not valid`,
-		"string.max": `Last name is not valid`,
-	}),
 	email: Joi.string().pattern(emailRegex).required().messages({
 		"string.pattern.base": `Email is not valid`,
 		"string.empty": `Email cannot be an empty field`,
@@ -88,7 +82,6 @@ const editUserValidation = Joi.object({
 			"string.min": `Phone is not valid`,
 		})
 	),
-
 	birthday: Joi.alternatives().try(
 		Joi.date().valid("").empty("").default(null),
 		Joi.date()

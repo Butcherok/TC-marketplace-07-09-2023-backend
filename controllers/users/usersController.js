@@ -16,7 +16,7 @@ const googleAuth = (req, res) => {
 };
 
 const register = async (req, res) => {
-	const { email, password, firstName, lastName } = req.body;
+	const { email, password, firstName } = req.body;
 
 	const user = await Users.findUserByQuery({ email });
 	if (user) throw httpError(409, errorMessage[409]);
@@ -39,7 +39,6 @@ const register = async (req, res) => {
 		token,
 		tokenLifeTime,
 		firstName,
-		lastName,
 		refreshToken,
 	});
 
@@ -50,7 +49,6 @@ const register = async (req, res) => {
 		user: {
 			uid: newUser.id,
 			firstName: newUser.firstName,
-			lastName: newUser.lastName,
 			email: newUser.email,
 			avatarUrl: newUser.avatarUrl,
 			isNewUser: true,
@@ -143,7 +141,7 @@ const update = async (req, res) => {
 		id,
 		data: body,
 		projection: "-password -avatarId",
-	}).populate("pets");
+	}).populate("goods");
 
 	res.json({
 		token: body.token ? body.token : updatedUser.token,
@@ -162,7 +160,7 @@ const update = async (req, res) => {
 			phone: updatedUser.phone,
 			city: updatedUser.city,
 			favorites: updatedUser.favorites,
-			pets: updatedUser.pets,
+			goods: updatedUser.goods,
 			avatarUrl: updatedUser.avatarUrl,
 			isNewUser: false,
 		},
@@ -175,7 +173,7 @@ const getMe = async (req, res) => {
 	const user = await Users.findUserById(
 		id,
 		"-password -token -avatarId"
-	).populate("pets");
+	).populate("goods");
 
 	res.json({
 		user: {

@@ -434,19 +434,13 @@
 			},
 			"UserRegistrationRequest": {
 				"type": "object",
-				"required": ["firstName", "lastName", "email", "password"],
+				"required": ["firstName", "email", "password"],
 				"properties": {
 					"firstName": {
 						"type": "string",
 						"description": "User first name",
 						"format": "text",
 						"example": "Mango"
-					},
-					"lastName": {
-						"type": "string",
-						"description": "User last name",
-						"format": "text",
-						"example": "Pongo"
 					},
 					"email": {
 						"type": "string",
@@ -484,7 +478,6 @@
 						"required": [
 							"uid",
 							"firstName",
-							"lastName",
 							"email",
 							"isNewUser",
 							"avatarUrl"
@@ -498,11 +491,6 @@
 							"firstName": {
 								"type": "string",
 								"description": "User first name",
-								"format": "text"
-							},
-							"lastName": {
-								"type": "string",
-								"description": "User last name",
 								"format": "text"
 							},
 							"email": {
@@ -563,7 +551,6 @@
 						"required": [
 							"uid",
 							"firstName",
-							"lastName",
 							"email",
 							"isNewUser",
 							"avatarUrl",
@@ -579,12 +566,6 @@
 							"firstNmae": {
 								"type": "string",
 								"description": "User first name",
-								"format": "text",
-								"example": "Mango"
-							},
-							"lastName": {
-								"type": "string",
-								"description": "User last name",
 								"format": "text",
 								"example": "Mango"
 							},
