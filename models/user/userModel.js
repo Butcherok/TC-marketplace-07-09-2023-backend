@@ -32,8 +32,7 @@ const userSchema = new Schema(
 		lastName: {
 			type: String,
 			minlength: 2,
-			maxlength: 15,
-			required: [true, "Set  last name for user"],
+			maxlength: 15
 		},
 		goods: [{ type: Schema.Types.ObjectId, ref: "goods" }],
 		favorites: [
