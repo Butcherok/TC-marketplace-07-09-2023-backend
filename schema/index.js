@@ -4,6 +4,8 @@ const {
 	editUserValidation,
 } = require("./users/usersSchemaValidation");
 
+const { addSchema } = require("./products/productsSchemaValidation");
+
 // const {
 // 	addSchema,
 // 	updateFavorite,
@@ -16,7 +18,7 @@ module.exports = {
 	loginSchemaValidation,
 	editUserValidation,
 	// addPetSchemaValidation,
-	// addSchema,
+	addSchema,
 	// updateFavorite,
 	// addPetSchemaValidation,
 };

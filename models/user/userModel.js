@@ -34,7 +34,6 @@ const userSchema = new Schema(
 			minlength: 2,
 			maxlength: 15
 		},
-		goods: [{ type: Schema.Types.ObjectId, ref: "goods" }],
 		favorites: [
 			{
 				type: Schema.Types.ObjectId,

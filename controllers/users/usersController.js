@@ -81,7 +81,7 @@ const login = async (req, res) => {
 		id: user.id,
 		data: { token, tokenLifeTime, refreshToken },
 		projection: "-password -avatarId",
-	}).populate("goods");
+	});
 
 	res.json({
 		token: updatedUser.token,
@@ -141,7 +141,7 @@ const update = async (req, res) => {
 		id,
 		data: body,
 		projection: "-password -avatarId",
-	}).populate("goods");
+	}).populate("products");
 
 	res.json({
 		token: body.token ? body.token : updatedUser.token,
