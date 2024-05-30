@@ -1,6 +1,5 @@
 const app = require("./app");
 const { serverMessage } = require("./constants");
-
 const mongoose = require("mongoose");
 
 mongoose
