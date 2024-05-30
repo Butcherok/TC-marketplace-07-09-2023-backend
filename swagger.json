@@ -1,996 +1,1151 @@
 {
-	"openapi": "3.0.1",
-	"info": {
-		"version": "1.0.1",
-		"title": "Dr.One API",
-		"description": "Dr.One server documentation"
-	},
-	"consumes": ["application/json", "multipart/form-data"],
-	"produces": ["application/json"],
-	"servers": [
-		{ "url": "http://localhost:3000" },
-		{ "url": "https://dr-one-marketplace.onrender.com" }
-	],
-	"tags": [
-		{ "name": "Users", "description": "User authorisation endpoint" },
-		{ "name": "Notices", "description": "Notices list endpoint" }
-	],
-	"paths": {
-		"/users/register": {
-			"post": {
-				"tags": ["Users"],
-				"summary": "User`s registration",
-				"parameters": [],
-				"requestBody": {
-					"description": "Registration's object",
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/UserRegistrationRequest"
-							}
-						}
-					}
-				},
-				"responses": {
-					"200": {
-						"description": "Successfull operations",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#components/schemas/UserRegistrationResponse"
-								}
-							}
-						}
-					},
-					"400": {
-						"description": "Bad request! Missing required name field or wrong field name.",
-						"content": {}
-					},
-					"409": {
-						"description": "Email in use.",
-						"content": {}
-					}
-				}
-			}
-		},
-		"/users/login": {
-			"post": {
-				"tags": ["Users"],
-				"summary": "User`s logination",
-				"parameters": [],
-				"requestBody": {
-					"description": "Login object",
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/UserLoginRequest"
-							}
-						}
-					}
-				},
-				"responses": {
-					"200": {
-						"description": "Successfull operations.",
-						"content": {
-							"application/json": {
-								"schema": { "$ref": "#components/schemas/UserLoginResponse" }
-							}
-						}
-					},
+  "openapi": "3.0.1",
+  "info": {
+    "version": "1.0.1",
+    "title": "Dr.One API",
+    "description": "Dr.One server documentation"
+  },
+  "consumes": ["application/json", "multipart/form-data"],
+  "produces": ["application/json"],
+  "servers": [
+    { "url": "http://localhost:3000" },
+    { "url": "https://dr-one-marketplace.onrender.com" }
+  ],
+  "tags": [
+    { "name": "Users", "description": "User authorisation endpoint" },
+    { "name": "Notices", "description": "Notices list endpoint" }
+  ],
+  "paths": {
+    "/users/register": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "User`s registration",
+        "parameters": [],
+        "requestBody": {
+          "description": "Registration's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegistrationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfull operations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#components/schemas/UserRegistrationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request! Missing required name field or wrong field name.",
+            "content": {}
+          },
+          "409": {
+            "description": "Email in use.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "User`s logination",
+        "parameters": [],
+        "requestBody": {
+          "description": "Login object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserLoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfull operations.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#components/schemas/UserLoginResponse" }
+              }
+            }
+          },
 
-					"400": {
-						"description": "Bad request! Missing required name field or wrong field name.",
-						"content": {}
-					},
-					"401": {
-						"description": "Not authorized / Email or password is wrong.",
-						"content": {}
-					}
-				}
-			}
-		},
-		"/users/refresh": {
-			"post": {
-				"tags": ["Users"],
-				"summary": "Refresh security token endpoint",
-				"parameters": [],
-				"requestBody": {
-					"description": "Refresh token string",
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/RefreshRequest"
-							}
-						}
-					}
-				},
-				"responses": {
-					"200": {
-						"description": "Successfull operations.",
-						"content": {
-							"application/json": {
-								"schema": { "$ref": "#components/schemas/RefreshResponse" }
-							}
-						}
-					},
-					"401": {
-						"description": "Not authorized",
-						"content": {}
-					}
-				}
-			}
-		},
-		"/users/current": {
-			"get": {
-				"tags": ["Users"],
-				"summary": "Return user`s and user`s pets cards",
-				"parameters": [],
-				"security": [{ "Bearer": [] }],
-				"requestBody": {
-					"content": {}
-				},
-				"responses": {
-					"200": {
-						"description": "Successfull operations.",
-						"content": {
-							"application/json": {
-								"schema": { "$ref": "#components/schemas/UserResponse" }
-							}
-						}
-					},
-					"401": {
-						"description": "Not authorized.",
-						"content": {}
-					}
-				}
-			}
-		},
-		"/users/logout": {
-			"post": {
-				"tags": ["Users"],
-				"summary": "User`s logout",
-				"parameters": [],
-				"security": [{ "Bearer": [] }],
-				"requestBody": {
-					"content": {}
-				},
-				"responses": {
-					"204": {
-						"description": "No content",
-						"content": {}
-					},
-					"401": {
-						"description": "Not authorized.",
-						"content": {}
-					}
-				}
-			}
-		},
-		"/users/update": {
-			"put": {
-				"tags": ["Users"],
-				"summary": "Update user`s data",
-				"parameters": [],
-				"security": [{ "Bearer": [] }],
-				"requestBody": {
-					"description": "Updating object",
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/UpdateUserFieldsRequest"
-							}
-						},
+          "400": {
+            "description": "Bad request! Missing required name field or wrong field name.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized / Email or password is wrong.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/users/refresh": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Refresh security token endpoint",
+        "parameters": [],
+        "requestBody": {
+          "description": "Refresh token string",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfull operations.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#components/schemas/RefreshResponse" }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/users/current": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Return user`s and user`s pets cards",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "content": {}
+        },
+        "responses": {
+          "200": {
+            "description": "Successfull operations.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#components/schemas/UserResponse" }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/users/logout": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "User`s logout",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "content": {}
+        },
+        "responses": {
+          "204": {
+            "description": "No content",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/users/update": {
+      "put": {
+        "tags": ["Users"],
+        "summary": "Update user`s data",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Updating object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserFieldsRequest"
+              }
+            },
 
-						"multipart/form-data": {
-							"schema": {
-								"$ref": "#/components/schemas/UpdateUserAvatarAndFieldsRequest"
-							}
-						}
-					}
-				},
-				"responses": {
-					"200": {
-						"description": "Successfull operations",
-						"content": {
-							"application/json": {
-								"schema": { "$ref": "#components/schemas/UpdateUserResponse" }
-							}
-						}
-					},
-					"400": {
-						"description": "Bad request! Missing required name field or wrong field name.",
-						"content": {}
-					},
-					"401": {
-						"description": "Not authorized.",
-						"content": {}
-					},
-					"409": {
-						"description": "Email in use.",
-						"content": {}
-					}
-				}
-			}
-		},
-		"/notices": {
-			"get": {
-				"tags": ["Notices"],
-				"summary": "Returns a list of cards by search query.",
-				"parameters": [
-					{
-						"in": "query",
-						"name": "filter",
-						"schema": { "type": "string" },
-						"example": "Gog",
-						"required": false,
-						"description": "Gets all the items matching the search query by the title field."
-					},
-					{
-						"in": "query",
-						"name": "category",
-						"schema": {
-							"type": "string",
-							"enum": ["sell", "for-free", "lost-found"]
-						},
-						"required": false,
-						"description": "Gets all items matching the search query by the category field."
-					},
-					{
-						"in": "query",
-						"name": "sex",
-						"schema": {
-							"type": "string",
-							"enum": ["male", "female"]
-						},
-						"required": false,
-						"description": "Gets all items matching the search query by gender."
-					},
-					{
-						"in": "query",
-						"name": "page",
-						"schema": {
-							"type": "integer",
-							"default": 1,
-							"minimum": 1
-						},
-						"required": false,
-						"description": "The number of items to skip before starting to collect the result set"
-					},
-					{
-						"in": "query",
-						"name": "limit",
-						"schema": {
-							"type": "integer",
-							"default": 6,
-							"minimum": 1
-						},
-						"required": false,
-						"description": "The number of items to return."
-					},
-					{
-						"in": "query",
-						"name": "date",
-						"schema": {
-							"type": "number",
-							"enum": [0.5, 1, 2]
-						},
-						"required": false,
-						"description": "Return filtred notices by pet`s age"
-					},
-					{
-						"in": "query",
-						"name": "sort",
-						"schema": {
-							"type": "string",
-							"enum": ["desc", "asc"],
-							"default": "desc"
-						},
-						"required": false,
-						"description": "Sort notices cards by date"
-					}
-				],
-				"requestBody": {
-					"content": {}
-				},
-				"responses": {
-					"200": {
-						"description": "Successfull operations",
-						"content": {
-							"application/json": {
-								"schema": { "$ref": "#components/schemas/NoticesResponse" }
-							}
-						}
-					}
-				}
-			}
-		}
-	},
-	"components": {
-		"schemas": {
-			"UserResponse": {
-				"type": "object",
-				"required": ["user"],
-				"properties": {
-					"user": {
-						"type": "object",
-						"required": [
-							"uid",
-							"name",
-							"email",
-							"isNewUser",
-							"avatarUrl",
-							"favorites",
-							"pets"
-						],
-						"properties": {
-							"uid": {
-								"type": "string",
-								"description": "User id",
-								"example": "64bd39c0b38fc2fe5b5dfef8"
-							},
-							"name": {
-								"type": "string",
-								"description": "User name",
-								"format": "text",
-								"example": "Mango"
-							},
-							"email": {
-								"type": "string",
-								"description": "User email",
-								"format": "email"
-							},
-							"isNewUser": {
-								"type": "boolean",
-								"example": false
-							},
-							"avatarUrl": {
-								"type": "string",
-								"description": "User avatar url",
-								"example": "https://res.cloudinary.com/de2bdafop/image/upload/v1690014491/default-avatar_zfllbo.png"
-							},
-							"birthday": {
-								"type": "date",
-								"description": "User birthday date",
-								"example": "2022-12-22T00:00:00.000Z"
-							},
-							"phone": {
-								"type": "string",
-								"description": "User phone",
-								"example": "+380933443494"
-							},
-							"city": {
-								"type": "string",
-								"description": "User location",
-								"example": "London"
-							},
-							"pets": {
-								"type": "array",
-								"items": {
-									"type": "object",
-									"required": [
-										"_id",
-										"category",
-										"name",
-										"date",
-										"type",
-										"fileUrl"
-									],
-									"properties": {
-										"_id": {
-											"type": "string",
-											"description": "Pet id",
-											"example": "64bd39c0b38fc2fe5b5dfef8"
-										},
-										"category": {
-											"type": "string",
-											"description": "Pet category",
-											"example": "my-pet"
-										},
-										"name": {
-											"type": "string",
-											"description": "Pet name",
-											"format": "text",
-											"example": "Peaches"
-										},
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserAvatarAndFieldsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfull operations",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#components/schemas/UpdateUserResponse" }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request! Missing required name field or wrong field name.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized.",
+            "content": {}
+          },
+          "409": {
+            "description": "Email in use.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/goods": {
+      "get": {
+        "tags": ["Good"],
+        "summary": "Returns a list of cards by search query.",
+        "description": "Gets all items matching the search query by the category field.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "filter",
+            "schema": { "type": "string" },
+            "example": "Gog",
+            "required": false,
+            "description": "Gets all the items matching the search query by the title field."
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "schema": {
+              "type": "string",
+              "enum": ["drones", "parts", "accessories", "assets"]
+            },
+            "required": false,
+            "description": "Gets all items matching the search query by the category field."
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "The number of items to skip before starting to collect the result set"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 6,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "The number of items to return."
+          },
+          {
+            "in": "query",
+            "name": "date",
+            "schema": {
+              "type": "number",
+              "enum": [0.5, 1, 2]
+            },
+            "required": false,
+            "description": "Return filtred notices by pet`s age"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string",
+              "enum": ["desc", "asc"],
+              "default": "desc"
+            },
+            "required": false,
+            "description": "Sort notices cards by date"
+          }
+        ],
+        "requestBody": {
+          "content": {}
+        },
+        "responses": {
+          "200": {
+            "description": "Successfull operations",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#components/schemas/Good" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/goods/{goodId}": {
+      "get": {
+        "tags": ["Good"],
+        "summary": "Find good by id",
+        "description": "Good with detail information",
+        "parameters": [
+          {
+            "name": "goodId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#components/schemas/Good"
+                }
+              },
+              "multipart/form-data": {
+                "schema": {
+                  "$ref": "#components/schemas/Good"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Good not found"
+          }
+        }
+      }
+    },
+    "/goods/add": {
+      "post": {
+        "tags": ["Good"],
+        "summary": "Add a new good to the store",
+        "description": "Add a new good to the store",
+        "operationId": "addGood",
+        "requestBody": {
+          "description": "Create a new good in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/Good"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#components/schemas/Good"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfull operations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#components/schemas/Good"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#components/schemas/Good"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid data or not filled all the fields"
+          }
+        }
+      }
+    },
+    "/goods/delete/{goodId}": {
+      "delete": {
+        "tags": ["Good"],
+        "summary": "Deletes a good from store",
+        "description": "Delete a good from store",
+        "operationId": "delById",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "goodId",
+            "in": "path",
+            "description": "Good Id to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No content"
+          },
+          "404": {
+            "description": "Invalid good id"
+          }
+        }
+      }
+    },
+    "/goods/edit/{goodId}": {
+      "put": {
+        "tags": ["Good"],
+        "summary": "Edits an existing good by id",
+        "description": "Edit an existing good by id",
+        "operationId": "editGoodById",
+        "parameters": [
+          {
+            "name": "goodId",
+            "in": "path",
+            "description": "Good id to edit",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Edit an existing good in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/Good"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#components/schemas/Good"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully edited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#components/schemas/Good"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#components/schemas/Good"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid data or not filled all the fields"
+          },
+          "404": {
+            "description": "Invalid good id"
+          }
+        }
+      }
+    },
+    "/goods/update/{goodId}": {
+      "patch": {
+        "tags": ["Good"],
+        "summary": "Updates a price and quantity of good",
+        "description": "Update a price and quantity of good",
+        "operationId": "updateGoodById",
+        "parameters": [
+          {
+            "name": "goodId",
+            "in": "path",
+            "description": "Good id to update",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/Good"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#components/schemas/Good"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#components/schemas/Good"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#components/schemas/Good"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid data or not filled all the fields"
+          },
+          "404": {
+            "description": "Invalid good id"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UserResponse": {
+        "type": "object",
+        "required": ["user"],
+        "properties": {
+          "user": {
+            "type": "object",
+            "required": [
+              "uid",
+              "name",
+              "email",
+              "isNewUser",
+              "avatarUrl",
+              "favorites",
+              "pets"
+            ],
+            "properties": {
+              "uid": {
+                "type": "string",
+                "description": "User id",
+                "example": "64bd39c0b38fc2fe5b5dfef8"
+              },
+              "name": {
+                "type": "string",
+                "description": "User name",
+                "format": "text",
+                "example": "Mango"
+              },
+              "email": {
+                "type": "string",
+                "description": "User email",
+                "format": "email"
+              },
+              "isNewUser": {
+                "type": "boolean",
+                "example": false
+              },
+              "avatarUrl": {
+                "type": "string",
+                "description": "User avatar url",
+                "example": "https://res.cloudinary.com/de2bdafop/image/upload/v1690014491/default-avatar_zfllbo.png"
+              },
+              "birthday": {
+                "type": "date",
+                "description": "User birthday date",
+                "example": "2022-12-22T00:00:00.000Z"
+              },
+              "phone": {
+                "type": "string",
+                "description": "User phone",
+                "example": "+380933443494"
+              },
+              "city": {
+                "type": "string",
+                "description": "User location",
+                "example": "London"
+              },
+              "pets": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "_id",
+                    "category",
+                    "name",
+                    "date",
+                    "type",
+                    "fileUrl"
+                  ],
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "description": "Pet id",
+                      "example": "64bd39c0b38fc2fe5b5dfef8"
+                    },
+                    "category": {
+                      "type": "string",
+                      "description": "Pet category",
+                      "example": "my-pet"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Pet name",
+                      "format": "text",
+                      "example": "Peaches"
+                    },
 
-										"date": {
-											"type": "date",
-											"description": "Pet birthday date",
-											"example": "2022-12-22T00:00:00.000Z"
-										},
-										"type": {
-											"type": "string",
-											"description": "Pet`s type",
-											"example": "cat"
-										},
-										"fileUrl": {
-											"type": "string",
-											"description": "Pet image url",
-											"example": "https://res.cloudinary.com/de2bdafop/image/upload/v1690014491/default-avatar_zfllbo.png"
-										},
-										"comments": {
-											"type": "string",
-											"description": "Pet`s description",
-											"example": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, dolore."
-										}
-									}
-								}
-							},
-							"favorites": {
-								"type": "array",
-								"items": {
-									"type": "string",
-									"description": "Notice card id",
-									"example": "64bd39c0b38fc2fe5b5dfef8"
-								}
-							}
-						}
-					}
-				}
-			},
-			"UserRegistrationRequest": {
-				"type": "object",
-				"required": ["firstName", "email", "password"],
-				"properties": {
-					"firstName": {
-						"type": "string",
-						"description": "User first name",
-						"format": "text",
-						"example": "Mango"
-					},
-					"email": {
-						"type": "string",
-						"description": "User email",
-						"format": "email"
-					},
-					"password": {
-						"type": "string",
-						"description": "User password",
-						"example": "Qw123456"
-					}
-				}
-			},
-			"UserRegistrationResponse": {
-				"type": "object",
-				"required": ["token", "user"],
-				"properties": {
-					"token": {
-						"type": "string",
-						"description": "Security token",
-						"example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxZDJAZXhhbXBsZS5jb20iLCJpYXQiOjE2OTAxMjI2ODgsImV4cCI6MTY5MDcyNzQ4OH0.SWW540U7mf-Y-GgSQoNLCkFd6HmYpVLTjlzfgjfte8w"
-					},
-					"tokenLifeTime": {
-						"type": "date",
-						"description": "Token life time",
-						"example": "2022-12-22T00:00:00.000Z"
-					},
-					"refreshToken": {
-						"type": "string",
-						"description": "Refresh security token",
-						"example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxZDJAZXhhbXBsZS5jb20iLCJpYXQiOjE2OTAxMjI2ODgsImV4cCI6MTY5MDcyNzQ4OH0.SWW540U7mf-Y-GgSQoNLCkFd6HmYpVLTjlzfgjfte8w"
-					},
-					"user": {
-						"type": "object",
-						"required": [
-							"uid",
-							"firstName",
-							"email",
-							"isNewUser",
-							"avatarUrl"
-						],
-						"properties": {
-							"uid": {
-								"type": "string",
-								"description": "User id",
-								"example": "64bd39c0b38fc2fe5b5dfef8"
-							},
-							"firstName": {
-								"type": "string",
-								"description": "User first name",
-								"format": "text"
-							},
-							"email": {
-								"type": "string",
-								"description": "User email",
-								"format": "email"
-							},
-							"isNewUser": {
-								"type": "boolean",
-								"example": true
-							},
-							"avatarUrl": {
-								"type": "string",
-								"description": "User avatar",
-								"example": "https://res.cloudinary.com/de2bdafop/image/upload/v1690014491/default-avatar_zfllbo.png"
-							}
-						}
-					}
-				}
-			},
-			"UserLoginRequest": {
-				"type": "object",
-				"required": ["email", "password"],
-				"properties": {
-					"email": {
-						"type": "string",
-						"description": "User email",
-						"format": "email"
-					},
-					"password": {
-						"type": "string",
-						"description": "User password",
-						"example": "Qw123456"
-					}
-				}
-			},
-			"UserLoginResponse": {
-				"type": "object",
-				"required": ["token", "user"],
-				"properties": {
-					"token": {
-						"type": "string",
-						"description": "Security token",
-						"example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxZDJAZXhhbXBsZS5jb20iLCJpYXQiOjE2OTAxMjI2ODgsImV4cCI6MTY5MDcyNzQ4OH0.SWW540U7mf-Y-GgSQoNLCkFd6HmYpVLTjlzfgjfte8w"
-					},
-					"tokenLifeTime": {
-						"type": "date",
-						"description": "Token life time",
-						"example": "2022-12-22T00:00:00.000Z"
-					},
-					"refreshToken": {
-						"type": "string",
-						"description": "Refresh security token",
-						"example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxZDJAZXhhbXBsZS5jb20iLCJpYXQiOjE2OTAxMjI2ODgsImV4cCI6MTY5MDcyNzQ4OH0.SWW540U7mf-Y-GgSQoNLCkFd6HmYpVLTjlzfgjfte8w"
-					},
-					"user": {
-						"type": "object",
-						"required": [
-							"uid",
-							"firstName",
-							"email",
-							"isNewUser",
-							"avatarUrl",
-							"favorites",
-							"pets"
-						],
-						"properties": {
-							"uid": {
-								"type": "string",
-								"description": "User id",
-								"example": "64bd39c0b38fc2fe5b5dfef8"
-							},
-							"firstNmae": {
-								"type": "string",
-								"description": "User first name",
-								"format": "text",
-								"example": "Mango"
-							},
-							"email": {
-								"type": "string",
-								"description": "User email",
-								"format": "email"
-							},
-							"isNewUser": {
-								"type": "boolean",
-								"example": false
-							},
-							"avatarUrl": {
-								"type": "string",
-								"description": "User avatar url",
-								"example": "https://res.cloudinary.com/de2bdafop/image/upload/v1690014491/default-avatar_zfllbo.png"
-							},
-							"birthday": {
-								"type": "date",
-								"description": "User birthday date",
-								"example": "2022-12-22T00:00:00.000Z"
-							},
-							"phone": {
-								"type": "string",
-								"description": "User phone",
-								"example": "+380933443494"
-							},
-							"city": {
-								"type": "string",
-								"description": "User location",
-								"example": "London"
-							},
-							"goods": {
-								"type": "array",
-								"items": {
-									"type": "object",
-									"required": [
-										"_id",
-										"category",
-										"name",
-										"date",
-										"type",
-										"fileUrl"
-									],
-									"properties": {
-										"_id": {
-											"type": "string",
-											"description": "Pet id",
-											"example": "64bd39c0b38fc2fe5b5dfef8"
-										},
-										"category": {
-											"type": "string",
-											"description": "Goods category",
-											"example": "drones"
-										},
-										"name": {
-											"type": "string",
-											"description": "Goods name",
-											"format": "text",
-											"example": "Drone ME-141"
-										},
+                    "date": {
+                      "type": "date",
+                      "description": "Pet birthday date",
+                      "example": "2022-12-22T00:00:00.000Z"
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Pet`s type",
+                      "example": "cat"
+                    },
+                    "fileUrl": {
+                      "type": "string",
+                      "description": "Pet image url",
+                      "example": "https://res.cloudinary.com/de2bdafop/image/upload/v1690014491/default-avatar_zfllbo.png"
+                    },
+                    "comments": {
+                      "type": "string",
+                      "description": "Pet`s description",
+                      "example": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, dolore."
+                    }
+                  }
+                }
+              },
+              "favorites": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": "Notice card id",
+                  "example": "64bd39c0b38fc2fe5b5dfef8"
+                }
+              }
+            }
+          }
+        }
+      },
+      "UserRegistrationRequest": {
+        "type": "object",
+        "required": ["firstName", "email", "password"],
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "description": "User first name",
+            "format": "text",
+            "example": "Mango"
+          },
+          "email": {
+            "type": "string",
+            "description": "User email",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "description": "User password",
+            "example": "Qw123456"
+          }
+        }
+      },
+      "UserRegistrationResponse": {
+        "type": "object",
+        "required": ["token", "user"],
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "Security token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxZDJAZXhhbXBsZS5jb20iLCJpYXQiOjE2OTAxMjI2ODgsImV4cCI6MTY5MDcyNzQ4OH0.SWW540U7mf-Y-GgSQoNLCkFd6HmYpVLTjlzfgjfte8w"
+          },
+          "tokenLifeTime": {
+            "type": "date",
+            "description": "Token life time",
+            "example": "2022-12-22T00:00:00.000Z"
+          },
+          "refreshToken": {
+            "type": "string",
+            "description": "Refresh security token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxZDJAZXhhbXBsZS5jb20iLCJpYXQiOjE2OTAxMjI2ODgsImV4cCI6MTY5MDcyNzQ4OH0.SWW540U7mf-Y-GgSQoNLCkFd6HmYpVLTjlzfgjfte8w"
+          },
+          "user": {
+            "type": "object",
+            "required": ["uid", "firstName", "email", "isNewUser", "avatarUrl"],
+            "properties": {
+              "uid": {
+                "type": "string",
+                "description": "User id",
+                "example": "64bd39c0b38fc2fe5b5dfef8"
+              },
+              "firstName": {
+                "type": "string",
+                "description": "User first name",
+                "format": "text"
+              },
+              "email": {
+                "type": "string",
+                "description": "User email",
+                "format": "email"
+              },
+              "isNewUser": {
+                "type": "boolean",
+                "example": true
+              },
+              "avatarUrl": {
+                "type": "string",
+                "description": "User avatar",
+                "example": "https://res.cloudinary.com/de2bdafop/image/upload/v1690014491/default-avatar_zfllbo.png"
+              }
+            }
+          }
+        }
+      },
+      "UserLoginRequest": {
+        "type": "object",
+        "required": ["email", "password"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User email",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "description": "User password",
+            "example": "Qw123456"
+          }
+        }
+      },
+      "UserLoginResponse": {
+        "type": "object",
+        "required": ["token", "user"],
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "Security token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxZDJAZXhhbXBsZS5jb20iLCJpYXQiOjE2OTAxMjI2ODgsImV4cCI6MTY5MDcyNzQ4OH0.SWW540U7mf-Y-GgSQoNLCkFd6HmYpVLTjlzfgjfte8w"
+          },
+          "tokenLifeTime": {
+            "type": "date",
+            "description": "Token life time",
+            "example": "2022-12-22T00:00:00.000Z"
+          },
+          "refreshToken": {
+            "type": "string",
+            "description": "Refresh security token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxZDJAZXhhbXBsZS5jb20iLCJpYXQiOjE2OTAxMjI2ODgsImV4cCI6MTY5MDcyNzQ4OH0.SWW540U7mf-Y-GgSQoNLCkFd6HmYpVLTjlzfgjfte8w"
+          },
+          "user": {
+            "type": "object",
+            "required": [
+              "uid",
+              "firstName",
+              "email",
+              "isNewUser",
+              "avatarUrl",
+              "favorites",
+              "pets"
+            ],
+            "properties": {
+              "uid": {
+                "type": "string",
+                "description": "User id",
+                "example": "64bd39c0b38fc2fe5b5dfef8"
+              },
+              "firstNmae": {
+                "type": "string",
+                "description": "User first name",
+                "format": "text",
+                "example": "Mango"
+              },
+              "email": {
+                "type": "string",
+                "description": "User email",
+                "format": "email"
+              },
+              "isNewUser": {
+                "type": "boolean",
+                "example": false
+              },
+              "avatarUrl": {
+                "type": "string",
+                "description": "User avatar url",
+                "example": "https://res.cloudinary.com/de2bdafop/image/upload/v1690014491/default-avatar_zfllbo.png"
+              },
+              "birthday": {
+                "type": "date",
+                "description": "User birthday date",
+                "example": "2022-12-22T00:00:00.000Z"
+              },
+              "phone": {
+                "type": "string",
+                "description": "User phone",
+                "example": "+380933443494"
+              },
+              "city": {
+                "type": "string",
+                "description": "User location",
+                "example": "London"
+              },
+              "goods": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "_id",
+                    "category",
+                    "name",
+                    "date",
+                    "type",
+                    "fileUrl"
+                  ],
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "description": "Pet id",
+                      "example": "64bd39c0b38fc2fe5b5dfef8"
+                    },
+                    "category": {
+                      "type": "string",
+                      "description": "Goods category",
+                      "example": "drones"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Goods name",
+                      "format": "text",
+                      "example": "Drone ME-141"
+                    },
 
-										"date": {
-											"type": "date",
-											"description": "Date of manufacture",
-											"example": "2022-12-22T00:00:00.000Z"
-										},
-										"type": {
-											"type": "string",
-											"description": "Goods type",
-											"example": "Brand new"
-										},
-										"fileUrl": {
-											"type": "string",
-											"description": "Goods image url",
-											"example": "https://res.cloudinary.com/de2bdafop/image/upload/v1690014491/default-avatar_zfllbo.png"
-										},
-										"comments": {
-											"type": "string",
-											"description": "Goods description",
-											"example": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, dolore."
-										}
-									}
-								}
-							},
-							"favorites": {
-								"type": "array",
-								"items": {
-									"type": "string",
-									"description": "Notice card id",
-									"example": "64bd39c0b38fc2fe5b5dfef8"
-								}
-							}
-						}
-					}
-				}
-			},
-			"RefreshRequest": {
-				"type": "object",
-				"required": ["refreshToken"],
-				"properties": {
-					"refreshToken": {
-						"type": "string",
-						"description": "Refresh security token",
-						"example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxZDJAZXhhbXBsZS5jb20iLCJpYXQiOjE2OTAxMjI2ODgsImV4cCI6MTY5MDcyNzQ4OH0.SWW540U7mf-Y-GgSQoNLCkFd6HmYpVLTjlzfgjfte8w"
-					}
-				}
-			},
-			"RefreshResponse": {
-				"type": "object",
-				"required": ["token", "tokenLifeTime", "refreshToken"],
-				"properties": {
-					"token": {
-						"type": "string",
-						"description": "Security token",
-						"example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxZDJAZXhhbXBsZS5jb20iLCJpYXQiOjE2OTAxMjI2ODgsImV4cCI6MTY5MDcyNzQ4OH0.SWW540U7mf-Y-GgSQoNLCkFd6HmYpVLTjlzfgjfte8w"
-					},
-					"tokenLifeTime": {
-						"type": "date",
-						"description": "Token life time",
-						"example": "2022-12-22T00:00:00.000Z"
-					},
-					"refreshToken": {
-						"type": "string",
-						"description": "Refresh security token",
-						"example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxZDJAZXhhbXBsZS5jb20iLCJpYXQiOjE2OTAxMjI2ODgsImV4cCI6MTY5MDcyNzQ4OH0.SWW540U7mf-Y-GgSQoNLCkFd6HmYpVLTjlzfgjfte8w"
-					}
-				}
-			},
-			"UpdateUserFieldsRequest": {
-				"type": "object",
-				"properties": {
-					"firstName": {
-						"type": "string",
-						"description": "User first name",
-						"format": "text",
-						"example": "Mango"
-					},
-					"lastName": {
-						"type": "string",
-						"description": "User last name",
-						"format": "text",
-						"example": "Pongo"
-					},
-					"email": {
-						"type": "string",
-						"description": "User email",
-						"format": "email"
-					},
-					"birthday": {
-						"type": "string",
-						"description": "User birthday date",
-						"example": "12-10-2020"
-					},
-					"phone": {
-						"type": "string",
-						"description": "User phone",
-						"example": "+380933443494"
-					},
-					"city": {
-						"type": "string",
-						"description": "User location",
-						"example": "London"
-					}
-				}
-			},
-			"UpdateUserAvatarAndFieldsRequest": {
-				"type": "object",
-				"properties": {
-					"firstName": {
-						"type": "string",
-						"description": "User first name",
-						"format": "text",
-						"example": "Mango"
-					},
-					"lastName": {
-						"type": "string",
-						"description": "User last name",
-						"format": "text",
-						"example": "Pongo"
-					},
-					"email": {
-						"type": "string",
-						"description": "User email",
-						"format": "email"
-					},
-					"birthday": {
-						"type": "string",
-						"description": "User birthday date",
-						"example": "12-10-2020"
-					},
-					"phone": {
-						"type": "string",
-						"description": "User phone",
-						"example": "+380933443494"
-					},
-					"city": {
-						"type": "string",
-						"description": "User location",
-						"example": "London"
-					},
-					"avatar": {
-						"type": "string",
-						"format": "binary",
-						"description": "User avatar file"
-					}
-				}
-			},
-			"UpdateUserResponse": {
-				"type": "object",
-				"required": ["token", "user"],
-				"properties": {
-					"token": {
-						"type": "string",
-						"description": "Security token",
-						"example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxZDJAZXhhbXBsZS5jb20iLCJpYXQiOjE2OTAxMjI2ODgsImV4cCI6MTY5MDcyNzQ4OH0.SWW540U7mf-Y-GgSQoNLCkFd6HmYpVLTjlzfgjfte8w"
-					},
-					"tokenLifeTime": {
-						"type": "date",
-						"description": "Token life time",
-						"example": "2022-12-22T00:00:00.000Z"
-					},
-					"refreshToken": {
-						"type": "string",
-						"description": "Refresh security token",
-						"example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxZDJAZXhhbXBsZS5jb20iLCJpYXQiOjE2OTAxMjI2ODgsImV4cCI6MTY5MDcyNzQ4OH0.SWW540U7mf-Y-GgSQoNLCkFd6HmYpVLTjlzfgjfte8w"
-					},
-					"user": {
-						"type": "object",
-						"required": [
-							"uid",
-							"firstName",
-							"lastName",
-							"email",
-							"isNewUser",
-							"avatarUrl",
-							"favorites",
-							"pets"
-						],
-						"properties": {
-							"uid": {
-								"type": "string",
-								"description": "User id",
-								"example": "64bd39c0b38fc2fe5b5dfef8"
-							},
-							"firstName": {
-								"type": "string",
-								"description": "User first name",
-								"format": "text",
-								"example": "Mango"
-							},
-							"lastName": {
-								"type": "string",
-								"description": "User last name",
-								"format": "text",
-								"example": "Pongo"
-							},
-							"email": {
-								"type": "string",
-								"description": "User email",
-								"format": "email"
-							},
-							"isNewUser": {
-								"type": "boolean",
-								"example": false
-							},
-							"avatarUrl": {
-								"type": "string",
-								"description": "User avatar url",
-								"example": "https://res.cloudinary.com/de2bdafop/image/upload/v1690014491/default-avatar_zfllbo.png"
-							},
-							"birthday": {
-								"type": "date",
-								"description": "User birthday date",
-								"example": "2022-12-22T00:00:00.000Z"
-							},
-							"phone": {
-								"type": "string",
-								"description": "User phone",
-								"example": "+380933443494"
-							},
-							"city": {
-								"type": "string",
-								"description": "User location",
-								"example": "London"
-							},
-							"goods": {
-								"type": "array",
-								"items": {
-									"type": "string",
-									"description": "Goods card id",
-									"example": "64bd39c0b38fc2fe5b5dfef8"
-								}
-							},
-							"favorites": {
-								"type": "array",
-								"items": {
-									"type": "string",
-									"description": "Notice card id",
-									"example": "64bd39c0b38fc2fe5b5dfef8"
-								}
-							}
-						}
-					}
-				}
-			},
+                    "date": {
+                      "type": "date",
+                      "description": "Date of manufacture",
+                      "example": "2022-12-22T00:00:00.000Z"
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Goods type",
+                      "example": "Brand new"
+                    },
+                    "fileUrl": {
+                      "type": "string",
+                      "description": "Goods image url",
+                      "example": "https://res.cloudinary.com/de2bdafop/image/upload/v1690014491/default-avatar_zfllbo.png"
+                    },
+                    "comments": {
+                      "type": "string",
+                      "description": "Goods description",
+                      "example": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, dolore."
+                    }
+                  }
+                }
+              },
+              "favorites": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": "Notice card id",
+                  "example": "64bd39c0b38fc2fe5b5dfef8"
+                }
+              }
+            }
+          }
+        }
+      },
+      "RefreshRequest": {
+        "type": "object",
+        "required": ["refreshToken"],
+        "properties": {
+          "refreshToken": {
+            "type": "string",
+            "description": "Refresh security token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxZDJAZXhhbXBsZS5jb20iLCJpYXQiOjE2OTAxMjI2ODgsImV4cCI6MTY5MDcyNzQ4OH0.SWW540U7mf-Y-GgSQoNLCkFd6HmYpVLTjlzfgjfte8w"
+          }
+        }
+      },
+      "RefreshResponse": {
+        "type": "object",
+        "required": ["token", "tokenLifeTime", "refreshToken"],
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "Security token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxZDJAZXhhbXBsZS5jb20iLCJpYXQiOjE2OTAxMjI2ODgsImV4cCI6MTY5MDcyNzQ4OH0.SWW540U7mf-Y-GgSQoNLCkFd6HmYpVLTjlzfgjfte8w"
+          },
+          "tokenLifeTime": {
+            "type": "date",
+            "description": "Token life time",
+            "example": "2022-12-22T00:00:00.000Z"
+          },
+          "refreshToken": {
+            "type": "string",
+            "description": "Refresh security token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxZDJAZXhhbXBsZS5jb20iLCJpYXQiOjE2OTAxMjI2ODgsImV4cCI6MTY5MDcyNzQ4OH0.SWW540U7mf-Y-GgSQoNLCkFd6HmYpVLTjlzfgjfte8w"
+          }
+        }
+      },
+      "UpdateUserFieldsRequest": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "description": "User first name",
+            "format": "text",
+            "example": "Mango"
+          },
+          "lastName": {
+            "type": "string",
+            "description": "User last name",
+            "format": "text",
+            "example": "Pongo"
+          },
+          "email": {
+            "type": "string",
+            "description": "User email",
+            "format": "email"
+          },
+          "birthday": {
+            "type": "string",
+            "description": "User birthday date",
+            "example": "12-10-2020"
+          },
+          "phone": {
+            "type": "string",
+            "description": "User phone",
+            "example": "+380933443494"
+          },
+          "city": {
+            "type": "string",
+            "description": "User location",
+            "example": "London"
+          }
+        }
+      },
+      "UpdateUserAvatarAndFieldsRequest": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "description": "User first name",
+            "format": "text",
+            "example": "Mango"
+          },
+          "lastName": {
+            "type": "string",
+            "description": "User last name",
+            "format": "text",
+            "example": "Pongo"
+          },
+          "email": {
+            "type": "string",
+            "description": "User email",
+            "format": "email"
+          },
+          "birthday": {
+            "type": "string",
+            "description": "User birthday date",
+            "example": "12-10-2020"
+          },
+          "phone": {
+            "type": "string",
+            "description": "User phone",
+            "example": "+380933443494"
+          },
+          "city": {
+            "type": "string",
+            "description": "User location",
+            "example": "London"
+          },
+          "avatar": {
+            "type": "string",
+            "format": "binary",
+            "description": "User avatar file"
+          }
+        }
+      },
+      "UpdateUserResponse": {
+        "type": "object",
+        "required": ["token", "user"],
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "Security token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxZDJAZXhhbXBsZS5jb20iLCJpYXQiOjE2OTAxMjI2ODgsImV4cCI6MTY5MDcyNzQ4OH0.SWW540U7mf-Y-GgSQoNLCkFd6HmYpVLTjlzfgjfte8w"
+          },
+          "tokenLifeTime": {
+            "type": "date",
+            "description": "Token life time",
+            "example": "2022-12-22T00:00:00.000Z"
+          },
+          "refreshToken": {
+            "type": "string",
+            "description": "Refresh security token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxZDJAZXhhbXBsZS5jb20iLCJpYXQiOjE2OTAxMjI2ODgsImV4cCI6MTY5MDcyNzQ4OH0.SWW540U7mf-Y-GgSQoNLCkFd6HmYpVLTjlzfgjfte8w"
+          },
+          "user": {
+            "type": "object",
+            "required": [
+              "uid",
+              "firstName",
+              "lastName",
+              "email",
+              "isNewUser",
+              "avatarUrl",
+              "favorites",
+              "pets"
+            ],
+            "properties": {
+              "uid": {
+                "type": "string",
+                "description": "User id",
+                "example": "64bd39c0b38fc2fe5b5dfef8"
+              },
+              "firstName": {
+                "type": "string",
+                "description": "User first name",
+                "format": "text",
+                "example": "Mango"
+              },
+              "lastName": {
+                "type": "string",
+                "description": "User last name",
+                "format": "text",
+                "example": "Pongo"
+              },
+              "email": {
+                "type": "string",
+                "description": "User email",
+                "format": "email"
+              },
+              "isNewUser": {
+                "type": "boolean",
+                "example": false
+              },
+              "avatarUrl": {
+                "type": "string",
+                "description": "User avatar url",
+                "example": "https://res.cloudinary.com/de2bdafop/image/upload/v1690014491/default-avatar_zfllbo.png"
+              },
+              "birthday": {
+                "type": "date",
+                "description": "User birthday date",
+                "example": "2022-12-22T00:00:00.000Z"
+              },
+              "phone": {
+                "type": "string",
+                "description": "User phone",
+                "example": "+380933443494"
+              },
+              "city": {
+                "type": "string",
+                "description": "User location",
+                "example": "London"
+              },
+              "goods": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": "Goods card id",
+                  "example": "64bd39c0b38fc2fe5b5dfef8"
+                }
+              },
+              "favorites": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": "Notice card id",
+                  "example": "64bd39c0b38fc2fe5b5dfef8"
+                }
+              }
+            }
+          }
+        }
+      },
 
-			"NoticesResponse": {
-				"type": "object",
-				"required": ["data"],
-				"properties": {
-					"data": {
-						"type": "object",
-						"required": ["notices", "total"],
-						"properties": {
-							"notices": {
-								"type": "array",
-								"items": {
-									"type": "object",
-									"required": [
-										"_id",
-										"name",
-										"category",
-										"date",
-										"type",
-										"fileUrl",
-										"title",
-										"sex",
-										"location",
-										"favorites",
-										"owner"
-									],
-									"properties": {
-										"_id": {
-											"type": "string",
-											"description": "Notice`s id",
-											"example": "64bd39c0b38fc2fe5b5dfef8"
-										},
-										"name": {
-											"type": "string",
-											"description": "Pet nickname",
-											"example": "Rex"
-										},
-										"category": {
-											"type": "string",
-											"description": "Notice`s category",
-											"example": "lost-found"
-										},
-										"date": {
-											"type": "date",
-											"description": "Pet birthday",
-											"example": "2022-12-22T00:00:00.000Z"
-										},
-										"type": {
-											"type": "string",
-											"description": "Breed of pet",
-											"example": "greyhound"
-										},
-										"fileUrl": {
-											"type": "string",
-											"description": "Notice`s image url",
-											"example": "https://storage.googleapis.com/kidslikev2_bucket/pets-support/images/sponsors/frame_287.png"
-										},
-										"fileId": {
-											"type": "string",
-											"description": "Notice`s image id",
-											"example": "file/file_Ui9Y3XC5AOwJCyBEqRxOr_drxmxf"
-										},
-										"comments": {
-											"type": "string",
-											"description": "Notice`s comments",
-											"example": "Also, four Proud Boys are found guilty of sedition. Here’s the latest at the end of Thursday."
-										},
-										"title": {
-											"type": "string",
-											"description": "Notice`s title",
-											"example": "The White House Pushes A.I. Leaders on Risks"
-										},
-										"sex": {
-											"type": "string",
-											"description": "Pet gender",
-											"enum": ["male", "female"],
-											"example": "male"
-										},
-										"location": {
-											"type": "string",
-											"description": "Pet's location, city",
-											"example": "London"
-										},
-										"owner": {
-											"type": "string",
-											"description": "Owner's id",
-											"example": "64bd3f149eabb55e4798955b"
-										},
-										"favorites": {
-											"type": "array",
-											"items": {
-												"type": "string",
-												"description": "User`s id",
-												"example": "64bd39c0b38fc2fe5b5dfef8"
-											}
-										}
-									}
-								}
-							},
-							"total": {
-								"type": "integer",
-								"description": "Return total counts of documents",
-								"example": "1121"
-							}
-						}
-					}
-				}
-			}
-		},
-		"securitySchemes": {
-			"basicAuth": {
-				"type": "http",
-				"scheme": "basic admin:123456"
-			},
-			"Bearer": {
-				"type": "http",
-				"scheme": "bearer",
-				"bearerFormat": "JWT"
-			}
-		}
-	}
+      "Goods": {
+        "type": "object",
+        "required": ["title", "type", "category"],
+        "properties": {
+          "owner": {
+            "$ref": "#/components/schemas/User"
+          },
+          "_id": {
+            "type": "string",
+            "description": "Good id",
+            "example": "Kdk02132KD0elcs33022Sdfa13"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of the good",
+            "example": "Drone FX-016"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of good",
+            "example": "Low range of remote control"
+          },
+          "category": {
+            "type": "string",
+            "description": "Category of good",
+            "enum": ["drones", "parts", "accessories", "assets"]
+          },
+          "price": {
+            "type": "number",
+            "description": "Price of the good",
+            "example": 950.5
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Quantity of good",
+            "example": 1
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "basicAuth": {
+        "type": "http",
+        "scheme": "basic admin:123456"
+      },
+      "Bearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
 }
