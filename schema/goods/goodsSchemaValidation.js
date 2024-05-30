@@ -29,7 +29,7 @@ const addSchema = Joi.object({
   price: Joi.number().positive().greater(0),
   quantity: Joi.number()
     .integer()
-    .min([1, "Quantity of goods should be greater than 1"])
+    .min(1)
     .messages({ string: "Quantity field is required" }),
   comments: Joi.alternatives().try(
     Joi.string().trim().valid("").empty("").default(""),
@@ -43,7 +43,7 @@ const updateGoodSchema = Joi.object({
     .when("category", { is: "sell", then: Joi.required() }),
   quantity: Joi.number()
     .integer()
-    .min([1, "Quantity of goods should be greater than 1"])
+    .min(1)
     .messages({ string: "Quantity field is required" }),
 });
 module.exports = { addSchema, updateGoodSchema };
