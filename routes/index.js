@@ -1,6 +1,6 @@
 const usersRoute = require("./users/usersRoute");
 
-const noticesRoute = require("./notices/noticeRoute");
+const goodsRoute = require("./goods/goodRoute");
 
 // const petsRoute = require("./pets/petsRoute");
 
@@ -9,9 +9,9 @@ const noticesRoute = require("./notices/noticeRoute");
 // const articlesRoute = require("./articles/articlesRoute");
 
 module.exports = {
-	usersRoute,
-	// petsRoute,
-	// sponsorsRoute,
-	// articlesRoute,
-	noticesRoute,
+  usersRoute,
+  // petsRoute,
+  // sponsorsRoute,
+  // articlesRoute,
+  goodsRoute,
 };

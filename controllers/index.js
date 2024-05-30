@@ -1,49 +1,48 @@
 const {
-    googleAuth,
-    register,
-    login,
-    refresh,
-    logout,
-    update,
-    getMe,
-  } = require("./users/usersController");
-  
-  const {
-    // add,
-    // addFavorite,
-    // delById,
-    // getById,
-    getNoticeByQuery,
-    // getOwnerNotices,
-    // getOwnerFavNotices,
-    // deleteFavorite,
-  } = require("./notices/noticesController");
-  
-//   const { addPet, deletePet } = require("./pets/petsController");
-  
+  googleAuth,
+  register,
+  login,
+  refresh,
+  logout,
+  update,
+  getMe,
+} = require("./users/usersController");
+
+const {
+  // addFavorite,
+  delById,
+  getById,
+  getGoodsByQuery,
+  // getOwnerNotices,
+  // getFavorites,
+  // deleteFavorite,
+  addGood,
+  editGoodById,
+  updateGoodById,
+} = require("./goods/goodsController");
+
 //   const { getSponsors } = require("./sponsors/sponsorsController");
-  
+
 //   const { getArticles } = require("./articles/articlesController");
-  
-  module.exports = {
-    googleAuth,
-    register,
-    login,
-    refresh,
-    logout,
-    update,
-    getMe,
-    // addPet,
-    // deletePet,
-    // getSponsors,
-    // getArticles,
-    // add,
-    // addFavorite,
-    // delById,
-    // getById,
-    getNoticeByQuery,
-    // getOwnerNotices,
-    // getOwnerFavNotices,
-    // deleteFavorite,
-  };
-  
+
+module.exports = {
+  googleAuth,
+  register,
+  login,
+  refresh,
+  logout,
+  update,
+  getMe,
+  // getSponsors,
+  // getArticles,
+  addGood,
+  // addFavorite,
+  delById,
+  getById,
+  getGoodsByQuery,
+  editGoodById,
+  updateGoodById,
+  // getOwnerNotices,
+  // getFavorites,
+  // deleteFavorite,
+};

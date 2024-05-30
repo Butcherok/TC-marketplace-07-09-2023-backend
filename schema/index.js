@@ -1,24 +1,22 @@
 const {
-	registerSchemaValidation,
-	loginSchemaValidation,
-	editUserValidation,
+  registerSchemaValidation,
+  loginSchemaValidation,
+  editUserValidation,
 } = require("./users/usersSchemaValidation");
 
-const { addSchema } = require("./products/productsSchemaValidation");
-
-// const {
-// 	addSchema,
-// 	updateFavorite,
-// } = require("./notices/noticesSchemaValidation");
-
-// const { addPetSchemaValidation } = require("./pets/petsSchemaValidation");
+const {
+  addSchema,
+  updateGoodSchema,
+} = require("./goods/goodsSchemaValidation");
 
 module.exports = {
-	registerSchemaValidation,
-	loginSchemaValidation,
-	editUserValidation,
-	// addPetSchemaValidation,
-	addSchema,
-	// updateFavorite,
-	// addPetSchemaValidation,
+  registerSchemaValidation,
+  loginSchemaValidation,
+  editUserValidation,
+  addSchema,
+  updateGoodSchema,
+  // addPetSchemaValidation,
+  // addSchema,
+  // updateFavorite,
+  // addPetSchemaValidation,
 };

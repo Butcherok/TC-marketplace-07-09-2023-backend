@@ -1,13 +1,11 @@
 const { User } = require("./user/userModel");
 
-const { Notice } = require("./notice/noticeModel");
+const { Good } = require("./goods/goodModel");
 
-const { Pet } = require("./pet/petModel");
-
-const { Product } = require("./product/productModel");
+const { Favorites } = require("./favoriteGoods/favoriteGoodsModel");
 
 // const { Sponsor } = require("./sponsor/sponsorModel");
 
 // const { Article } = require("./article/articleModel");
 
-module.exports = { Notice, User, Pet, Product };
+module.exports = { Good, User, Favorites };
