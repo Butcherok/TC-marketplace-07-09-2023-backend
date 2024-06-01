@@ -10,16 +10,16 @@ const {
 
 const {
   // addFavorite,
-  delById,
-  getById,
-  getGoodsByQuery,
+  delProductById,
+  getProductById,
+  getProductsByQuery,
   // getOwnerNotices,
   // getFavorites,
   // deleteFavorite,
-  addGood,
-  editGoodById,
-  updateGoodById,
-} = require("./goods/goodsController");
+  addProduct,
+  editProductById,
+  updateProductById,
+} = require("./products/productsController");
 
 //   const { getSponsors } = require("./sponsors/sponsorsController");
 
@@ -35,13 +35,13 @@ module.exports = {
   getMe,
   // getSponsors,
   // getArticles,
-  addGood,
+  addProduct,
   // addFavorite,
-  delById,
-  getById,
-  getGoodsByQuery,
-  editGoodById,
-  updateGoodById,
+  delProductById,
+  getProductById,
+  getProductsByQuery,
+  editProductById,
+  updateProductById,
   // getOwnerNotices,
   // getFavorites,
   // deleteFavorite,

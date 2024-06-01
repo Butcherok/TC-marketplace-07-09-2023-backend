@@ -5,18 +5,14 @@ const {
 } = require("./users/usersSchemaValidation");
 
 const {
-  addSchema,
-  updateGoodSchema,
-} = require("./goods/goodsSchemaValidation");
+  addProductSchema,
+  updateProductSchema,
+} = require("./products/productsSchemaValidation");
 
 module.exports = {
   registerSchemaValidation,
   loginSchemaValidation,
   editUserValidation,
-  addSchema,
-  updateGoodSchema,
-  // addPetSchemaValidation,
-  // addSchema,
-  // updateFavorite,
-  // addPetSchemaValidation,
+  addProductSchema,
+  updateProductSchema,
 };

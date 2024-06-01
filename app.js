@@ -12,7 +12,7 @@ const {
   // petsRoute,
   // sponsorsRoute,
   // articlesRoute,
-  goodsRoute,
+  productsRoute,
 } = require("./routes");
 const { errorMessage } = require("./constants");
 
@@ -31,7 +31,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use("/users", usersRoute);
 
-app.use("/goods", goodsRoute);
+app.use("/products", productsRoute);
 
 // app.use("/pets", petsRoute);
 

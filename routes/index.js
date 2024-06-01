@@ -1,6 +1,6 @@
 const usersRoute = require("./users/usersRoute");
 
-const goodsRoute = require("./goods/goodRoute");
+const productsRoute = require("./products/productsRoute");
 
 // const petsRoute = require("./pets/petsRoute");
 
@@ -13,5 +13,5 @@ module.exports = {
   // petsRoute,
   // sponsorsRoute,
   // articlesRoute,
-  goodsRoute,
+  productsRoute,
 };

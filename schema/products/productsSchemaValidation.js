@@ -1,6 +1,6 @@
 const Joi = require("joi").extend(require("@joi/date"));
 
-const addSchema = Joi.object({
+const addProductSchema = Joi.object({
   category: Joi.string()
     .valid("drones", "parts", "accessories", "assets")
     .required(),
@@ -36,7 +36,7 @@ const addSchema = Joi.object({
     Joi.string().max(120)
   ),
 });
-const updateGoodSchema = Joi.object({
+const updateProductSchema = Joi.object({
   price: Joi.number()
     .positive()
     .greater(0)
@@ -46,4 +46,4 @@ const updateGoodSchema = Joi.object({
     .min(1)
     .messages({ string: "Quantity field is required" }),
 });
-module.exports = { addSchema, updateGoodSchema };
+module.exports = { addProductSchema, updateProductSchema };
