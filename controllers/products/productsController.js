@@ -1,68 +1,69 @@
 const { tryCatchWrapper } = require("../../utils");
 const { httpError } = require("../../utils");
-const { Good, User, Favorites } = require("../../models");
+const { Product } = require("../../models");
 const { Users } = require("../../services");
 const { errorMessage } = require("../../constants");
-const addGood = async (req, res) => {
+const addProduct = async (req, res) => {
   const { id: owner } = req.user;
-  const response = await Good.create({ ...req.body, owner });
+  const response = await Product.create({ ...req.body, owner });
   res.status(200).json({ data: response });
 };
 
-const getById = async (req, res) => {
-  const { goodId } = req.params;
-  const response = await Good.findById(goodId);
+const getProductById = async (req, res) => {
+  const { productId } = req.params;
+  const response = await Product.findById(productId);
   if (!response) {
     throw httpError(404, errorMessage[404]);
   }
   res.status(200).json(response);
 };
 
-const getGoodsByQuery = async (req, res) => {
+const getProductsByQuery = async (req, res) => {
   const { category, title } = req.query;
-  const results = await Good.find({ category, title });
+  const results = await Product.find({ category, title });
   if (!results) {
     throw httpError(404, errorMessage[404]);
   }
   res.status(200).json(results);
 };
-const delById = async (req, res) => {
-  const { goodId } = req.params;
+const delProductById = async (req, res) => {
+  const { productId } = req.params;
   const { id: owner } = req.user;
 
-  const deletedGood = await Good.deleteById(goodId);
+  const deletedProduct = await Product.deleteById(productId);
 
-  if (!deletedGood) {
+  if (!deletedProduct) {
     throw httpError(404, errorMessage[404]);
   }
-  await Image.deleteImage(notice.fileId);
   await Users.updateUser({
     id: owner,
-    data: { $pull: goodId },
+    data: { $pull: productId },
     fieldName: "favorites",
   });
   res.status(204).send("No content");
 };
-const editGoodById = async (req, res) => {
-  const { goodId } = req.params;
-  const updatedGood = await Good.findByIdAndUpdate(goodId, { ...req.body });
-  if (!updatedGood) {
+const editProductById = async (req, res) => {
+  const { productId } = req.params;
+  const updatedProduct = await Product.findByIdAndUpdate(productId, {
+    ...req.body,
+  });
+  if (!updatedProduct) {
     throw httpError(404, errorMessage[404]);
   }
-  res.status(200).json(updatedGood);
+  res.status(200).json(updatedProduct);
 };
-const updateGoodById = async (req, res) => {
+const updateProductById = async (req, res) => {
   const { price, quantity } = req.body;
-  const { goodId } = req.params;
-  const updatedGood = await Good.findByIdAndUpdate(goodId, {
+  const { productId } = req.params;
+  const updatedProduct = await Product.findByIdAndUpdate(productId, {
     ...req.body,
     price,
     quantity,
   });
-  if (!updatedGood) {
+  if (!updatedProduct) {
     throw httpError(404, errorMessage[404]);
   }
-  res.status(200).json(updatedGood);
+  res.status(200).json(updatedProduct);
 };
 // const getOwnerNotices = async (req, res) => {
 //   const { id: owner } = req.user;
@@ -151,12 +152,12 @@ const updateGoodById = async (req, res) => {
 // };
 
 module.exports = {
-  addGood: tryCatchWrapper(addGood),
-  getById: tryCatchWrapper(getById),
-  getGoodsByQuery: tryCatchWrapper(getGoodsByQuery),
-  delById: tryCatchWrapper(delById),
-  editGoodById: tryCatchWrapper(editGoodById),
-  updateGoodById: tryCatchWrapper(updateGoodById),
+  addProduct: tryCatchWrapper(addProduct),
+  getProductById: tryCatchWrapper(getProductById),
+  getProductsByQuery: tryCatchWrapper(getProductsByQuery),
+  delProductById: tryCatchWrapper(delProductById),
+  editProductById: tryCatchWrapper(editProductById),
+  updateProductById: tryCatchWrapper(updateProductById),
   // addFavorite: tryCatchWrapper(addFavorite),
   //   getOwnerNotices: tryCatchWrapper(getOwnerNotices),
   // getFavorites: tryCatchWrapper(getFavorites),

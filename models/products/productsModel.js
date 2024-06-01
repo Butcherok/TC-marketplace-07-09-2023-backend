@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 const { schemaError } = require("../../utils");
 
-const goodsSchema = new Schema(
+const productsSchema = new Schema(
   {
     owner: {
       type: Schema.Types.ObjectId,
@@ -94,7 +94,7 @@ const goodsSchema = new Schema(
   { versionKey: false, timestamps: false }
 );
 
-goodsSchema.post("save", schemaError);
+productsSchema.post("save", schemaError);
 
-const Good = model("goods", goodsSchema);
-module.exports = { Good };
+const Product = model("products", productsSchema);
+module.exports = { Product };

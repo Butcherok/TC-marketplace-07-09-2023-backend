@@ -1,6 +1,6 @@
 const { User } = require("./user/userModel");
 
-const { Good } = require("./goods/goodModel");
+const { Product } = require("./products/productsModel");
 
 const { Favorites } = require("./favoriteGoods/favoriteGoodsModel");
 
@@ -8,4 +8,4 @@ const { Favorites } = require("./favoriteGoods/favoriteGoodsModel");
 
 // const { Article } = require("./article/articleModel");
 
-module.exports = { Good, User, Favorites };
+module.exports = { Product, User, Favorites };

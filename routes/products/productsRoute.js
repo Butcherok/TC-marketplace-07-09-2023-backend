@@ -8,46 +8,50 @@ const {
 } = require("../../middlewares");
 const ctrl = require("../../controllers");
 const { Image } = require("../../services");
-const { addSchema, updateGoodSchema } = require("../../schema");
+const { addProductSchema, updateProductSchema } = require("../../schema");
 const { file, errorMessage } = require("../../constants");
 
 const router = express.Router();
 
-router.get("/", ctrl.getGoodsByQuery);
+router.get("/", ctrl.getProductsByQuery);
 
 // router.get("/owner", authentificate("token"), ctrl.getOwnerNotices);
 
 // router.get("/favorites", authentificate("token"), ctrl.getFavorites);
 
-router.get("/:goodId", isValidId(400, errorMessage[400]), ctrl.getById);
+router.get(
+  "/:productId",
+  isValidId(400, errorMessage[400]),
+  ctrl.getProductById
+);
 
 router.post(
   "/add",
   authentificate("token"),
   Image.uploadErrorHandler(file.notice.fieldName, file.notice.fileName),
   checkFieldData,
-  fieldValidation(addSchema),
-  ctrl.addGood
+  fieldValidation(addProductSchema),
+  ctrl.addProduct
 );
 
 router.delete(
-  "/delete/:goodId",
+  "/delete/:productId",
   authentificate("token"),
   isValidId(400, errorMessage[400]),
-  ctrl.delById
+  ctrl.delProductById
 );
 
 router.put(
-  "/edit/:goodId",
+  "/edit/:productId",
   isValidId(400, errorMessage[400]),
-  fieldValidation(addSchema),
-  ctrl.editGoodById
+  fieldValidation(addProductSchema),
+  ctrl.editProductById
 );
 router.patch(
-  "/update/:goodId",
+  "/update/:productId",
   isValidId(400, errorMessage[400]),
-  fieldValidation(updateGoodSchema),
-  ctrl.updateGoodById
+  fieldValidation(updateProductSchema),
+  ctrl.updateProductById
 );
 // router.post(
 //   "/favorites/add/:goodId",
