@@ -1100,7 +1100,7 @@
         "required": ["title", "type", "category"],
         "properties": {
           "owner": {
-            "$ref": "#/components/schemas/User"
+            "$ref": "#/components/schemas/UserResponse"
           },
           "_id": {
             "type": "string",
