@@ -12,8 +12,8 @@
     { "url": "https://dr-one-marketplace.onrender.com" }
   ],
   "tags": [
-    { "name": "Users", "description": "User authorisation endpoint" },
-    { "name": "Notices", "description": "Notices list endpoint" }
+    { "name": "Users", "description": "User authorization endpoint" },
+    { "name": "Products", "description": "Products list endpoint" }
   ],
   "paths": {
     "/users/register": {
@@ -1137,10 +1137,6 @@
       }
     },
     "securitySchemes": {
-      "basicAuth": {
-        "type": "http",
-        "scheme": "basic admin:123456"
-      },
       "Bearer": {
         "type": "http",
         "scheme": "bearer",
